@@ -4,3 +4,12 @@ run-rabbitmq:
 
 run-redis:
 	docker run -p 6379:6379 redis
+
+build:
+	docker build -t celery_sample .
+
+run-worker:
+	docker run --network=host -it celery_sample celery -A proj worker -l INFO
+
+ipython:
+	docker run --network=host -it celery_sample ipython
